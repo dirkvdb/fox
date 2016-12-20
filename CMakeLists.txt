@@ -12,12 +12,6 @@ ENABLE_TESTING()
 INCLUDE(CTest)
 
 #======================#
-# Install support
-#======================#
-INCLUDE(GNUInstallDirs)
-SET(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/fortran)
-
-#======================#
 # Build paths
 #======================#
 
@@ -26,6 +20,16 @@ SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 SET(CMAKE_Fortran_MODULE_DIRECTORY ${PROJECT_BINARY_DIR}/modules)
 INCLUDE_DIRECTORIES(${CMAKE_Fortran_MODULE_DIRECTORY})
 
+#======================#
+# Install support
+#======================#
+INCLUDE(GNUInstallDirs)
+SET(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/fortran)
+
+INSTALL(DIRECTORY ${CMAKE_Fortran_MODULE_DIRECTORY}
+  DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+  FILES_MATCHING PATTERN "*.mod"
+)
 
 #======================#
 # Enable/disable libraries
