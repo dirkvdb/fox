@@ -7,7 +7,7 @@ IF(NOT ${M4_PROGRAM} MATCHES "NOTFOUND")
     DEPENDS m_wcml_coma.m4
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   )
-  
+
   # m_wcml_geometry.F90: m_wcml_geometry.m4
   #         m4 -I ../m4 $< > $@
   ADD_CUSTOM_COMMAND(
@@ -16,7 +16,7 @@ IF(NOT ${M4_PROGRAM} MATCHES "NOTFOUND")
     DEPENDS m_wcml_geometry.m4
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   )
-  
+
   # m_wcml_lattice.F90: m_wcml_lattice.m4
   #         m4 -I ../m4 $< > $@
   ADD_CUSTOM_COMMAND(
@@ -25,7 +25,7 @@ IF(NOT ${M4_PROGRAM} MATCHES "NOTFOUND")
     DEPENDS m_wcml_lattice.m4
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   )
-  
+
   # m_wcml_lists.F90: m_wcml_lists.m4
   #         m4 -I ../m4 $< > $@
   ADD_CUSTOM_COMMAND(
@@ -34,7 +34,7 @@ IF(NOT ${M4_PROGRAM} MATCHES "NOTFOUND")
     DEPENDS m_wcml_lists.m4
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   )
-  
+
   # m_wcml_molecule.F90: m_wcml_molecule.m4
   #         m4 -I ../m4 $< > $@
   ADD_CUSTOM_COMMAND(
@@ -43,7 +43,7 @@ IF(NOT ${M4_PROGRAM} MATCHES "NOTFOUND")
     DEPENDS m_wcml_molecule.m4
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   )
-  
+
   # m_wcml_parameter.F90: m_wcml_parameter.m4
   #         m4 -I ../m4 $< > $@
   ADD_CUSTOM_COMMAND(
@@ -52,7 +52,7 @@ IF(NOT ${M4_PROGRAM} MATCHES "NOTFOUND")
     DEPENDS m_wcml_parameter.m4
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   )
-  
+
   # m_wcml_property.F90: m_wcml_property.m4
   #         m4 -I ../m4 $< > $@
   ADD_CUSTOM_COMMAND(
@@ -61,7 +61,7 @@ IF(NOT ${M4_PROGRAM} MATCHES "NOTFOUND")
     DEPENDS m_wcml_property.m4
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   )
-  
+
   # m_wcml_stml.F90: m_wcml_stml.m4
   #         m4 -I ../m4 $< > $@
   ADD_CUSTOM_COMMAND(
@@ -101,4 +101,14 @@ target_link_libraries(
   ${PROJECT_NAME}_wcml
   ${PROJECT_NAME}_utils
   ${PROJECT_NAME}_wxml
+)
+
+install(TARGETS ${PROJECT_NAME}_wcml
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/
+  DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+  FILES_MATCHING PATTERN "*.mod"
 )

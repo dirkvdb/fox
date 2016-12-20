@@ -9,7 +9,13 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 #======================#
 
 ENABLE_TESTING()
-INCLUDE(CTest)
+INCLUDE(CTest
+
+#======================#
+# Install support
+#======================#
+INCLUDE(GNUInstallDirs)
+SET(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/fortran)
 
 #======================#
 # Build paths
@@ -34,11 +40,11 @@ OPTION(${PROJECT_NAME}_ENABLE_EXAMPLES "Build examples" ON)
 #======================#
 # set another compiler #
 #======================#
-# to set another compiler than the default, 
+# to set another compiler than the default,
 # do the usual from within the build directory:
-# $ FC=g95 
+# $ FC=g95
 # $ rm -rf * && cmake ../
-# $ make 
+# $ make
 
 #=====================#
 # verbose make output #

@@ -1,26 +1,26 @@
 
 
 set(m_dom_dom_srcs
-  m_dom_types.m4 
-  m_dom_node.m4 
+  m_dom_types.m4
+  m_dom_node.m4
   m_dom_nodelist.m4
-  m_dom_namednodemap.m4 
+  m_dom_namednodemap.m4
   m_dom_implementation.m4
-  m_dom_document.m4 
+  m_dom_document.m4
   m_dom_document_type.m4
-  m_dom_element.m4 
+  m_dom_element.m4
   m_dom_attribute.m4
-  m_dom_character_data.m4 
+  m_dom_character_data.m4
   m_dom_entity.m4
-  m_dom_processing_instruction.m4 
+  m_dom_processing_instruction.m4
   m_dom_text.m4
-  m_dom_common.m4 
-  m_dom_exception.m4 
+  m_dom_common.m4
+  m_dom_exception.m4
   m_dom_dom.m4
-  m_dom_namespaces.m4 
+  m_dom_namespaces.m4
   m_dom_configuration.m4
-  m_dom_treewalk.m4 
-  m_dom_exception.m4 
+  m_dom_treewalk.m4
+  m_dom_exception.m4
   m_dom_object.m4
 )
 
@@ -34,7 +34,7 @@ IF(NOT ${M4_PROGRAM} MATCHES "NOTFOUND")
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     VERBATIM
   )
-  
+
   # m_dom_parse.f90: m_dom_parse.m4
   #         m4 -I ../m4 $< > $@
   ADD_CUSTOM_COMMAND(
@@ -44,7 +44,7 @@ IF(NOT ${M4_PROGRAM} MATCHES "NOTFOUND")
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     VERBATIM
   )
-  
+
   # m_dom_utils.f90: m_dom_utils.m4
   #         m4 -I ../m4 $< > $@
   ADD_CUSTOM_COMMAND(
@@ -54,9 +54,9 @@ IF(NOT ${M4_PROGRAM} MATCHES "NOTFOUND")
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     VERBATIM
   )
-  
+
   # m_dom_dom.F90: $(M4FILES)
-  #         m4 -I ../m4 m_dom_dom.m4 > $@ 
+  #         m4 -I ../m4 m_dom_dom.m4 > $@
   ADD_CUSTOM_COMMAND(
     OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/m_dom_dom.F90
     COMMAND ${M4_PROGRAM} -I ../m4 ${CMAKE_CURRENT_SOURCE_DIR}/m_dom_dom.m4 > ${CMAKE_CURRENT_SOURCE_DIR}/m_dom_dom.F90
@@ -71,7 +71,7 @@ set(fox_dom_srcs_pp
   m_dom_dom.F90
   m_dom_extras.F90
 )
-  
+
 set(fox_dom_srcs
   FoX_dom.f90
   m_dom_error.f90
@@ -94,4 +94,14 @@ target_link_libraries(
   ${PROJECT_NAME}_dom
   ${PROJECT_NAME}_wxml
   ${PROJECT_NAME}_sax
+)
+
+install(TARGETS ${PROJECT_NAME}_dom
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/
+  DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+  FILES_MATCHING PATTERN "*.mod"
 )

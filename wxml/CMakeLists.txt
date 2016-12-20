@@ -19,7 +19,7 @@ set(fox_wxml_srcs_pp
   m_wxml_escape.F90
   m_wxml_overloads.F90
 )
- 
+
 add_library(
   ${PROJECT_NAME}_wxml STATIC
   ${fox_wxml_srcs}
@@ -30,4 +30,14 @@ target_link_libraries(
   ${PROJECT_NAME}_wxml
   ${PROJECT_NAME}_common
   ${PROJECT_NAME}_fsys
+)
+
+install(TARGETS ${PROJECT_NAME}_wxml
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/
+  DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+  FILES_MATCHING PATTERN "*.mod"
 )
