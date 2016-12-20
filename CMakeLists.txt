@@ -16,7 +16,6 @@ INCLUDE(CTest)
 #======================#
 INCLUDE(GNUInstallDirs)
 SET(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/fortran)
-INSTALL(DIRECTORY ${CMAKE_BINARY_DIR}/fortran DESTINATION include/fortran/project)
 
 #======================#
 # Build paths
